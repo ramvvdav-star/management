@@ -1,6 +1,6 @@
 -- ==============================================================================
 -- eSecurityIn – Project & Task Progress Management Database Schema
--- For Supabase PostgreSQL
+-- Paste and Run in Supabase SQL Editor: https://supabase.com/dashboard/project/_/sql
 -- ==============================================================================
 
 -- 1. Departments Table
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS departments (
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- 2. Employees Table
+-- 2. Employees Table (Initial 4 Core Staff: Hardik, Abhishek, Kaushik, Himanshu)
 CREATE TABLE IF NOT EXISTS employees (
     id VARCHAR(50) PRIMARY KEY,
     name VARCHAR(120) NOT NULL,
@@ -105,3 +105,50 @@ CREATE INDEX IF NOT EXISTS idx_projects_dept ON projects(department_id);
 CREATE INDEX IF NOT EXISTS idx_projects_status ON projects(status);
 CREATE INDEX IF NOT EXISTS idx_progress_updates_task ON task_progress_updates(task_id);
 CREATE INDEX IF NOT EXISTS idx_activity_project ON project_activity(project_id);
+
+-- ==============================================================================
+-- INITIAL SEED DATA (Departments + Initial 4 Core Staff)
+-- ==============================================================================
+
+-- Seed Initial Departments
+INSERT INTO departments (id, name, code, description) VALUES
+('dept-cyber', 'Cybersecurity', 'CYBER', 'Threat Intelligence, Vulnerability Assessment, PenTesting, SOC Operations'),
+('dept-dev', 'Development', 'DEV', 'Core Product Engineering, Microservices Architecture, Secure APIs'),
+('dept-ops', 'Operations & DevSecOps', 'OPS', 'Cloud Infrastructure Hardening, CI/CD Pipelines, Kubernetes, SRE'),
+('dept-rd', 'Research & Labs', 'RD', 'Cryptographic Algorithms, Zero-Day Research, AI Security Models')
+ON CONFLICT (id) DO NOTHING;
+
+-- Seed Initial 4 Core Staff Members
+INSERT INTO employees (id, name, employee_id, department_id, designation, joining_date, status, role, access_key) VALUES
+('emp-hardik', 'Hardik', 'ESI-1001', 'dept-cyber', 'Lead Cybersecurity Architect & Delivery Head', '2025-01-15', 'Active', 'Manager', '1001'),
+('emp-abhishek', 'Abhishek', 'ESI-1002', 'dept-cyber', 'Senior Security Systems & Infrastructure Manager', '2025-02-01', 'Active', 'Manager', '1002'),
+('emp-kaushik', 'Kaushik', 'ESI-1003', 'dept-dev', 'Full-Stack Security Software Engineer', '2025-03-10', 'Active', 'Employee', '1003'),
+('emp-himanshu', 'Himanshu', 'ESI-1004', 'dept-ops', 'DevSecOps & Platform Automation Engineer', '2025-03-15', 'Active', 'Employee', '1004')
+ON CONFLICT (id) DO NOTHING;
+
+-- Enable Row Level Security (RLS) with Public Open Policies for eSecurityIn Platform
+ALTER TABLE departments ENABLE ROW LEVEL SECURITY;
+ALTER TABLE employees ENABLE ROW LEVEL SECURITY;
+ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
+ALTER TABLE tasks ENABLE ROW LEVEL SECURITY;
+ALTER TABLE task_progress_updates ENABLE ROW LEVEL SECURITY;
+ALTER TABLE task_comments ENABLE ROW LEVEL SECURITY;
+ALTER TABLE project_activity ENABLE ROW LEVEL SECURITY;
+
+-- Drop prior policies if running repeatedly
+DROP POLICY IF EXISTS "Public access departments" ON departments;
+DROP POLICY IF EXISTS "Public access employees" ON employees;
+DROP POLICY IF EXISTS "Public access projects" ON projects;
+DROP POLICY IF EXISTS "Public access tasks" ON tasks;
+DROP POLICY IF EXISTS "Public access updates" ON task_progress_updates;
+DROP POLICY IF EXISTS "Public access comments" ON task_comments;
+DROP POLICY IF EXISTS "Public access activity" ON project_activity;
+
+-- Full CRUD Access Policies for eSecurityIn Platform (No user auth gate)
+CREATE POLICY "Public access departments" ON departments FOR ALL USING (true) WITH CHECK (true);
+CREATE POLICY "Public access employees" ON employees FOR ALL USING (true) WITH CHECK (true);
+CREATE POLICY "Public access projects" ON projects FOR ALL USING (true) WITH CHECK (true);
+CREATE POLICY "Public access tasks" ON tasks FOR ALL USING (true) WITH CHECK (true);
+CREATE POLICY "Public access updates" ON task_progress_updates FOR ALL USING (true) WITH CHECK (true);
+CREATE POLICY "Public access comments" ON task_comments FOR ALL USING (true) WITH CHECK (true);
+CREATE POLICY "Public access activity" ON project_activity FOR ALL USING (true) WITH CHECK (true);

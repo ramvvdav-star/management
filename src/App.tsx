@@ -106,8 +106,20 @@ export default function App() {
       }
     } catch (err) {
       console.error('Error loading data:', err);
+      // Ensure fallback baseline is populated so interface never hangs
+      try {
+        const { getLocalDB, calculateOverview } = await import('./clientStorage');
+        const db = getLocalDB();
+        setOverviewStats(calculateOverview(db));
+        setEmployees(db.employees);
+        setDepartments(db.departments);
+        setProjects(db.projects);
+        setTasks(db.tasks);
+      } catch (fallbackErr) {
+        console.error('Fallback error:', fallbackErr);
+      }
       if (showNotice) {
-        addToast('error', 'Sync Failed', 'Could not fetch latest updates from server.');
+        addToast('error', 'Sync Failed', 'Using local persistent baseline.');
       }
     } finally {
       setIsLoading(false);
