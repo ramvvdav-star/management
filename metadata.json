@@ -1,0 +1,6 @@
+{
+  "name": "eSecurityIn",
+  "description": "A centralized platform for tracking daily employee work, team productivity and company-wide project progress.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

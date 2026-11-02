@@ -1,0 +1,97 @@
+{
+  "employees": [
+    {
+      "id": "emp-hardik",
+      "name": "Hardik",
+      "employee_id": "ESI-1001",
+      "department_id": "dept-cyber",
+      "designation": "Lead Cybersecurity Architect & Delivery Head",
+      "joining_date": "2025-01-15",
+      "status": "Active",
+      "role": "Manager",
+      "access_key": "1001",
+      "created_at": "2026-11-02T09:16:36.259Z",
+      "updated_at": "2026-11-02T09:16:36.259Z"
+    },
+    {
+      "id": "emp-abhishek",
+      "name": "Abhishek",
+      "employee_id": "ESI-1002",
+      "department_id": "dept-cyber",
+      "designation": "Senior Security Systems & Infrastructure Manager",
+      "joining_date": "2025-02-01",
+      "status": "Active",
+      "role": "Manager",
+      "access_key": "1002",
+      "created_at": "2026-11-02T09:16:36.259Z",
+      "updated_at": "2026-11-02T09:16:36.259Z"
+    },
+    {
+      "id": "emp-kaushik",
+      "name": "Kaushik",
+      "employee_id": "ESI-1003",
+      "department_id": "dept-dev",
+      "designation": "Full-Stack Security Software Engineer",
+      "joining_date": "2025-03-10",
+      "status": "Active",
+      "role": "Employee",
+      "access_key": "1003",
+      "created_at": "2026-11-02T09:16:36.259Z",
+      "updated_at": "2026-11-02T09:16:36.259Z"
+    },
+    {
+      "id": "emp-himanshu",
+      "name": "Himanshu",
+      "employee_id": "ESI-1004",
+      "department_id": "dept-ops",
+      "designation": "DevSecOps & Platform Automation Engineer",
+      "joining_date": "2025-03-15",
+      "status": "Active",
+      "role": "Employee",
+      "access_key": "1004",
+      "created_at": "2026-11-02T09:16:36.259Z",
+      "updated_at": "2026-11-02T09:16:36.259Z"
+    }
+  ],
+  "departments": [
+    {
+      "id": "dept-cyber",
+      "name": "Cybersecurity",
+      "code": "CYBER",
+      "description": "Threat Intelligence, Vulnerability Management, Red-Teaming, SOC",
+      "created_at": "2026-11-02T09:16:36.260Z",
+      "updated_at": "2026-11-02T09:16:36.260Z"
+    },
+    {
+      "id": "dept-dev",
+      "name": "Development",
+      "code": "DEV",
+      "description": "Core Product Engineering, Microservices Architecture, Secure APIs",
+      "created_at": "2026-11-02T09:16:36.260Z",
+      "updated_at": "2026-11-02T09:16:36.260Z"
+    },
+    {
+      "id": "dept-ops",
+      "name": "Operations & DevSecOps",
+      "code": "OPS",
+      "description": "Cloud Infrastructure Hardening, CI/CD Pipelines, Kubernetes, SRE",
+      "created_at": "2026-11-02T09:16:36.260Z",
+      "updated_at": "2026-11-02T09:16:36.260Z"
+    },
+    {
+      "id": "dept-rd",
+      "name": "Research & Labs",
+      "code": "RD",
+      "description": "Cryptographic Algorithms, Zero-Day Research, AI Security Models",
+      "created_at": "2026-11-02T09:16:36.260Z",
+      "updated_at": "2026-11-02T09:16:36.260Z"
+    }
+  ],
+  "projects": [],
+  "tasks": [],
+  "task_progress_updates": [],
+  "task_comments": [],
+  "project_activity": [],
+  "master_access_key": "esecurity2026",
+  "last_updated": "2026-11-02T09:17:46.742Z"
+}
